@@ -1,0 +1,24 @@
+services:
+  usuario-microservice:
+    container_name: usuario-microservice
+    build:
+      context: usuario-microservice
+      dockerfile: Dockerfile
+    image: usuario-microservice:latest
+    ports:
+      - 8081:8081
+    networks:
+      - tcg-catalog-network
+  card-microservice:
+    container_name: card-microservice
+    build:
+      context: card-microservice
+      dockerfile: Dockerfile
+    image: card-microservice:latest
+    ports:
+      - 8082:8082
+    networks:
+      - tcg-catalog-network
+networks:
+  tcg-catalog-network:
+    driver: bridge

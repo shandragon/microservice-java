@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4-insert-categories
+      author: Adailton
+      preConditions:
+        - onFail: MARK_RAN
+        - and:
+            - not:
+                tableExists: category
+      changes:
+        - insert:
+            schemaName: catalogs
+            tableName: category
+            columns:
+              - column:
+                  name: name
+                  value: "Magic: The Gathering"
+        - insert:
+            schemaName: catalogs
+            tableName: category
+            columns:
+              - column:
+                  name: name
+                  value: "Pokemon"
+        - insert:
+            schemaName: catalogs
+            tableName: category
+            columns:
+              - column:
+                  name: name
+                  value: "Yu-Gi-Oh!"
