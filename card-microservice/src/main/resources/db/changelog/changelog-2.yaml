@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 3-add-fk-category
+      id: 2-cms-add-fk-category
       author: Adailton
       preConditions:
         - onFail: MARK_RAN

@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: 1-ums-create-table-user
       author: Adailton
       preConditions:
         - onFail: MARK_RAN

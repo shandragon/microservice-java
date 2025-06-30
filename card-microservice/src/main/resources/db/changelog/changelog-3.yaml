@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 4-insert-categories
+      id: 3-cms-insert-categories
       author: Adailton
       preConditions:
         - onFail: MARK_RAN

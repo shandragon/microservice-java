@@ -1,24 +1,71 @@
 services:
+  bd-microservice:
+    container_name: tcgc-bd
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - tcgc-network
+
+  gateway-microservice:
+    container_name: tcgc-gateway
+    build:
+      context: gateway
+      dockerfile: Dockerfile
+    image: gateway-microservice:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - USER_API_URL
+      - CARD_API_URL
+    depends_on:
+      - bd-microservice
+    networks:
+      - tcgc-network
+
   usuario-microservice:
-    container_name: usuario-microservice
+    container_name: tcgc-usuario-api
     build:
       context: usuario-microservice
       dockerfile: Dockerfile
     image: usuario-microservice:latest
     ports:
-      - 8081:8081
+      - "8081:8081"
+    environment:
+      - POSTGRES_URL
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    depends_on:
+      - bd-microservice
     networks:
-      - tcg-catalog-network
+      - tcgc-network
+
   card-microservice:
-    container_name: card-microservice
+    container_name: tcgc-card-api
     build:
       context: card-microservice
       dockerfile: Dockerfile
     image: card-microservice:latest
     ports:
-      - 8082:8082
+      - "8082:8082"
+    environment:
+      - POSTGRES_URL
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    depends_on:
+      - bd-microservice
     networks:
-      - tcg-catalog-network
+      - tcgc-network
+
 networks:
-  tcg-catalog-network:
+  tcgc-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/28

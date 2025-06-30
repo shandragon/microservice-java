@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2-create-card-category
+      id: 1-cms-create-card-category
       author: Adailton
       preConditions:
         - onFail: MARK_RAN
