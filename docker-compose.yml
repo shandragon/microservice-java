@@ -2,14 +2,12 @@ services:
   bd-microservice:
     container_name: tcgc-bd
     image: postgres:latest
-    ports:
-      - "5432:5432"
     environment:
       - POSTGRES_DB
       - POSTGRES_USER
       - POSTGRES_PASSWORD
     volumes:
-      - ./db:/docker-entrypoint-initdb.d
+      - ./database/sql:/docker-entrypoint-initdb.d
     networks:
       - tcgc-network
 
@@ -20,12 +18,13 @@ services:
       dockerfile: Dockerfile
     image: gateway-microservice:latest
     ports:
-      - "8080:8080"
+      - "8180:8080"
     environment:
       - USER_API_URL
       - CARD_API_URL
     depends_on:
-      - bd-microservice
+      - usuario-microservice
+      - card-microservice
     networks:
       - tcgc-network
 
