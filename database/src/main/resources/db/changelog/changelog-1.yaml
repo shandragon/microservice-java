@@ -1,47 +1,48 @@
 databaseChangeLog:
   - changeSet:
-      id: 1-create-table-audit
-      author: Adailton
+      id: 1-create-table-user
+      author: Adailton Cerqueira Jr
       preConditions:
         - onFail: MARK_RAN
           not:
             tableExists:
-              tableName: audit
+              tableName: user
       changes:
         - createTable:
             schemaName: catalogs
-            tableName: audit
+            tableName: user
             columns:
               - column:
                   name: id
                   type: UUID
-                  defaultValueComputed: "uuid_generate_v4()"
+                  defaultValueComputed: "gen_random_uuid()"
                   constraints:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: old_value
-                  type: varchar
-                  constraints:
-                    nullable: false
-              - column:
-                  name: new_value
-                  type: varchar
-                  constraints:
-                    nullable: false
-              - column:
-                  name: resource
+                  name: name
                   type: varchar(250)
                   constraints:
                     nullable: false
               - column:
-                  name: type
+                  name: cpf
+                  type: varchar(11)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
                   type: varchar(250)
                   constraints:
                     nullable: false
               - column:
-                 name: created_at
+                  name: created_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                 name: updated_at
                  type: timestamp
-                 defaultValueComputed: "CURRENT_TIMESTAMP"
+                 defaultValueComputed: CURRENT_TIMESTAMP
                  constraints:
                    nullable: false

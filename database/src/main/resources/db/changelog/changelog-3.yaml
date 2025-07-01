@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 3-cms-insert-categories
-      author: Adailton
+      id: 3-insert-categories
+      author: Adailton Cerqueira Jr
       preConditions:
         - onFail: MARK_RAN
         - and:

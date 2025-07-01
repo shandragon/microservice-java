@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
-      id: 1-cms-create-card-category
-      author: Adailton
+      id: 2-create-card-category
+      author: Adailton Cerqueira Jr
       preConditions:
         - onFail: MARK_RAN
         - and:
@@ -32,14 +32,20 @@ databaseChangeLog:
                   defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
                     nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
         - createTable:
             schemaName: catalogs
             tableName: card
             columns:
               - column:
                   name: id
-                  type: BIGINT
-                  autoIncrement: true
+                  type: UUID
+                  defaultValueComputed: "gen_random_uuid()"
                   constraints:
                     primaryKey: true
                     nullable: false
@@ -54,8 +60,23 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                 name: created_at
-                 type: timestamp
-                 defaultValueComputed: CURRENT_TIMESTAMP
-                 constraints:
-                   nullable: false
+                  name: created_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableSchemaName: catalogs
+            baseTableName: card
+            baseColumnNames: category_id
+            referencedTableSchemaName: catalogs
+            referencedTableName: category
+            referencedColumnNames: id
+            constraintName: fk_cards_category
+            onDelete: CASCADE
