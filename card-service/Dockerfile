@@ -1,4 +1,4 @@
-FROM maven:latest
+FROM maven:3.9.10-amazoncorretto-21-debian
 
 WORKDIR /app
 
