@@ -31,7 +31,7 @@ services:
       - tcgc-network
 
   user-service:
-    container_name: tcgc-usuario-api
+    container_name: tcgc-user-api
     build:
       context: user-service
       dockerfile: Dockerfile
@@ -44,6 +44,7 @@ services:
       - POSTGRES_PASSWORD
     volumes:
       - ./user-service:/app
+      - ./core:/core
     depends_on:
       - database
     networks:
@@ -63,6 +64,7 @@ services:
       - POSTGRES_PASSWORD
     volumes:
       - ./card-service:/app
+      - ./core:/core
     depends_on:
       - database
     networks:
@@ -95,6 +97,23 @@ services:
     ports:
       - "7080:7080"
       - "7443:7443"
+    depends_on:
+      - database
+    networks:
+      - tcgc-network
+
+  liquibase:
+    container_name: tcgc-liquibase
+    build:
+      context: database
+      dockerfile: Dockerfile
+    image: liquibase:dev
+    environment:
+      - POSTGRES_URL
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    volumes:
+      - ./database:/app
     depends_on:
       - database
     networks:

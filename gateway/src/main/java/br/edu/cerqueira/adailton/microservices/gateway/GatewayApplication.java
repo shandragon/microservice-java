@@ -27,6 +27,8 @@ public class GatewayApplication {
 						.uri(userApiURL))
 				.route("card_route", r -> r.path("/card/**")
 						.uri(cardApiURL))
+				.route("category_route", r -> r.path("/category/**")
+						.uri(cardApiURL))
 				.build();
 
 	}

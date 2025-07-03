@@ -8,6 +8,8 @@ COPY .mvn ./.mvn
 COPY mvnw .
 COPY mvnw.* .
 
-RUN mvn clean package -DskipTests
+# Copia e define o entrypoint
+COPY scripts/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-CMD ["mvn", "spring-boot:run"]
+ENTRYPOINT ["/entrypoint.sh"]

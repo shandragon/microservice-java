@@ -1,6 +1,6 @@
 package br.edu.cerqueira.adailton.microservices.card.model;
 
-import br.edu.cerqueira.adailton.microservices.card.dto.CategoryDTO;
+import br.edu.cerqueira.adailton.microservices.dto.CategoryDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
