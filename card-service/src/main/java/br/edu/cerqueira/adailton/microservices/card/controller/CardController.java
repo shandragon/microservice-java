@@ -1,6 +1,6 @@
 package br.edu.cerqueira.adailton.microservices.card.controller;
 
-import br.edu.cerqueira.adailton.microservices.card.dto.CardDTO;
+import br.edu.cerqueira.adailton.microservices.dto.CardDTO;
 import br.edu.cerqueira.adailton.microservices.card.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

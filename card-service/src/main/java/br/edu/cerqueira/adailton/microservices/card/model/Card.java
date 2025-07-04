@@ -1,6 +1,6 @@
 package br.edu.cerqueira.adailton.microservices.card.model;
 
-import br.edu.cerqueira.adailton.microservices.card.dto.CardDTO;
+import br.edu.cerqueira.adailton.microservices.dto.CardDTO;
 import jakarta.persistence.*;
 
 import java.util.Date;

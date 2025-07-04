@@ -1,8 +1,4 @@
-package br.edu.cerqueira.adailton.microservices.card.dto;
-
-import br.edu.cerqueira.adailton.microservices.card.convert.DTOConvert;
-import br.edu.cerqueira.adailton.microservices.card.model.Card;
-import br.edu.cerqueira.adailton.microservices.dto.CategoryDTO;
+package br.edu.cerqueira.adailton.microservices.dto;
 
 import java.util.Date;
 
@@ -33,13 +29,5 @@ public class CardDTO {
 
     public void setCategory(CategoryDTO category) {
         this.category = category;
-    }
-
-    public static CardDTO convert(Card card) {
-        CardDTO cardDTO = new CardDTO();
-        cardDTO.setName(card.getName());
-        cardDTO.setCreatedAt(card.getCreatedAt());
-        cardDTO.setCategory(DTOConvert.convert(card.getCategory()));
-        return cardDTO;
     }
 }
