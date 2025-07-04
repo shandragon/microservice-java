@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "292be644-672e-416d-8eb6-4d4af169d049",
+		"_postman_id": "165d3aca-f000-443c-874c-79a052c29781",
 		"name": "TCG Catalog",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24726932"
 	},
 	"item": [
 		{
@@ -72,6 +73,116 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Listar Categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/category",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Keycloak",
+			"item": [
+				{
+					"name": "User info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJQXzc1eHh2V3g2NWJ1b05jc1dCUUV5dnYwY3NERFhzN1RWTXkyODNNZVRVIn0.eyJleHAiOjE3NTE2NjM3MTYsImlhdCI6MTc1MTY2MzQxNiwianRpIjoiNWM3NzZlNjQtODY5Zi00MDYyLWI2NGMtOTE2ZWYxZGIxN2RiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MDgwL3JlYWxtcy90Y2ctcmVhbG0iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMTgwNDlmN2MtN2E3OC00ZTVjLTljZDgtMmZiNTFmYTgxYmY2IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoidGNnLWdhdGV3YXkiLCJzZXNzaW9uX3N0YXRlIjoiNTI3NDVlYTQtYzU0OS00NTMxLWIxMDctYWU2Y2RjZjQ2ZjJjIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImFkbWluIiwiZGVmYXVsdC1yb2xlcy10Y2ctcmVhbG0iLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiI1Mjc0NWVhNC1jNTQ5LTQ1MzEtYjEwNy1hZTZjZGNmNDZmMmMiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW51c2VyIn0.L3BAI3mH2UJJY627udwfIC_8pnON0VxqA5wiIyZCFq-SjEvcsgGZIq1phN5GK07p7JgACPQVCCHqs45jbUTsnTld9_XI9DFWGOeXCarT5tYY93j0pn9M-INk6W-89cZHck151BCWrATCF_OeVRfY2ypx6ew_c4dUAC4xUKSwAADRoC7GOBCl4vEu9L9hHK4-gNVXDHfOecBHzbgPUswU5Vn0UG92hKnmvDFIhjL1nLzZN9uyzw04qP8O1vtQBggK87cDoQkL-KEZhyPJ2jXh79zazxXoZyo8beR74jbSmx-73PUbqSvAhqTA6YYU82rf8OXSz6iuIY-ntkwFsBuf0w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:7080/realms/tcg-realm/protocol/openid-connect/userinfo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"realms",
+								"tcg-realm",
+								"protocol",
+								"openid-connect",
+								"userinfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "tcg-gateway",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "adminuser",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:7080/realms/tcg-realm/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"realms",
+								"tcg-realm",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -99,7 +210,7 @@
 	"variable": [
 		{
 			"key": "url",
-			"value": "http://localhost:8080",
+			"value": "http://localhost:8180",
 			"type": "default"
 		}
 	]

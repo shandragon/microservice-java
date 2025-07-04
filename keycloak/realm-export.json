@@ -1,0 +1,48 @@
+{
+  "realm": "tcg-realm",
+  "enabled": true,
+  "users": [
+    {
+      "username": "AdminUser",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin123"
+        }
+      ],
+      "realmRoles": ["admin"]
+    },
+    {
+      "username": "NormalUser",
+      "enabled": true,
+      "emailVerified": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "user123"
+        }
+      ],
+      "realmRoles": ["user"]
+    }
+  ],
+  "roles": {
+    "realm": [
+      {
+        "name": "admin"
+      },
+      {
+        "name": "user"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "tcg-gateway",
+      "publicClient": true,
+      "redirectUris": ["*"],
+      "directAccessGrantsEnabled": true
+    }
+  ]
+}
