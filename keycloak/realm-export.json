@@ -3,7 +3,7 @@
   "enabled": true,
   "users": [
     {
-      "username": "AdminUser",
+      "username": "admin-tcg-realm",
       "enabled": true,
       "emailVerified": true,
       "credentials": [
@@ -15,7 +15,7 @@
       "realmRoles": ["admin"]
     },
     {
-      "username": "NormalUser",
+      "username": "normaluser",
       "enabled": true,
       "emailVerified": true,
       "credentials": [
@@ -30,7 +30,16 @@
   "roles": {
     "realm": [
       {
-        "name": "admin"
+        "name": "admin",
+        "description": "${role_admin}",
+        "composite": true,
+        "composites": {
+          "client": {
+            "realm-management": [
+              "manage-users"
+            ]
+          }
+        }
       },
       {
         "name": "user"
