@@ -8,6 +8,7 @@ public class UserDTO {
     private String name;
     private String cpf;
     private String email;
+    private String passwd;
     private Date createdAt;
 
     public String getName() {
@@ -42,11 +43,20 @@ public class UserDTO {
         this.createdAt = createdAt;
     }
 
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
     public static UserDTO convert(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setName(user.getName());
         userDTO.setCpf(user.getCpf());
         userDTO.setEmail(user.getEmail());
+        userDTO.setPasswd(user.getPasswd());
         userDTO.setCreatedAt(user.getCreatedAt());
         return userDTO;
     }

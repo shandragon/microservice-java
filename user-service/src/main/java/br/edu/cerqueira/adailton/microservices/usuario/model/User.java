@@ -15,6 +15,7 @@ public class User {
     private String name;
     private String cpf;
     private String email;
+    private String passwd;
     private Date createdAt;
 
     public long getId() {
@@ -57,12 +58,21 @@ public class User {
         this.createdAt = createdAt;
     }
 
+    public String getPasswd() {
+        return passwd;
+    }
+
+    public void setPasswd(String passwd) {
+        this.passwd = passwd;
+    }
+
     public static User convert(UserDTO userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
         user.setCpf(userDTO.getCpf());
         user.setEmail(userDTO.getEmail());
         user.setCreatedAt(userDTO.getCreatedAt());
+        user.setPasswd(userDTO.getPasswd());
         return user;
     }
 }

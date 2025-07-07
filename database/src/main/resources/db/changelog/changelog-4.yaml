@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4-alter-table-users
+      author: Adailton Cerqueira Jr
+      preConditions:
+        - onFail: MARK_RAN
+        - and:
+            - not:
+                tableExists: user
+      changes:
+        - addColumn:
+            schemaName: catalogs
+            tableName: user
+            columns:
+              - column:
+                  name: passwd
+                  type: varchar(250)
