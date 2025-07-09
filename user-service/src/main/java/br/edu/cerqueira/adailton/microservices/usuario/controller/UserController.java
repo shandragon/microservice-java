@@ -3,7 +3,6 @@ package br.edu.cerqueira.adailton.microservices.usuario.controller;
 import br.edu.cerqueira.adailton.microservices.usuario.dto.UserDTO;
 import br.edu.cerqueira.adailton.microservices.usuario.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +19,6 @@ public class UserController {
     private UserService service;
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('role_admin')")
     public List<UserDTO> getAll() {
         return service.getAll();
     }

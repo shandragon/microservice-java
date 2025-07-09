@@ -1,4 +1,4 @@
-package br.edu.cerqueira.adailton.microservices.usuario.converter;
+package br.edu.cerqueira.adailton.microservices.gateway.converter;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;

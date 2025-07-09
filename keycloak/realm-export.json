@@ -1,6 +1,8 @@
 {
   "realm": "tcg-realm",
   "enabled": true,
+  "sslRequired": "external",
+  "verifyEmail": false,
   "users": [
     {
       "username": "admin-tcg-realm",
@@ -31,25 +33,63 @@
     "realm": [
       {
         "name": "admin",
-        "description": "${role_admin}",
+        "description": "",
         "composite": true,
         "composites": {
           "client": {
             "realm-management": [
-              "manage-users"
+              "admin"
             ]
           }
         }
       },
       {
-        "name": "user"
+        "name": "user",
+        "description": "",
+        "composite": true,
+        "composites": {
+          "client": {
+            "realm-management": [
+              "user"
+            ]
+          }
+        }
       }
-    ]
+    ],
+    "client": {
+      "realm-security": [
+        {
+          "id": "cf638bfa-5374-4f3f-bc03-ff129e969ff9",
+          "name": "role_admin",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "f9876367-e727-4e0a-b920-c62939fa889c",
+          "attributes": {}
+        },
+        {
+          "id": "928d492a-c305-4d63-b78e-8ff6b3a37019",
+          "name": "admin",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "f9876367-e727-4e0a-b920-c62939fa889c",
+          "attributes": {}
+        },
+        {
+          "id": "64ba23e6-5464-4d68-805d-e112a601b763",
+          "name": "role_user",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "f9876367-e727-4e0a-b920-c62939fa889c",
+          "attributes": {}
+        }
+      ]
+    }
   },
   "clients": [
     {
       "clientId": "tcg-gateway",
       "publicClient": true,
+      "enabled": true,
       "redirectUris": ["*"],
       "directAccessGrantsEnabled": true
     }
