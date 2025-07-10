@@ -25,8 +25,7 @@ services:
     volumes:
       - ./gateway:/app
     depends_on:
-      - user-service
-      - card-service
+      - keycloak
     networks:
       - tcgc-network
 
@@ -47,6 +46,7 @@ services:
       - ./core:/core
     depends_on:
       - database
+      - gateway
     networks:
       - tcgc-network
 
@@ -67,6 +67,7 @@ services:
       - ./core:/core
     depends_on:
       - database
+      - gateway
     networks:
       - tcgc-network
 
