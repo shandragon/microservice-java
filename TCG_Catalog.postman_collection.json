@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4ec41441-b648-466f-9875-25d53c9a5006",
+		"_postman_id": "c8e5f6c7-1553-4696-8213-f3b1d9ad7325",
 		"name": "TCG Catalog",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24726932"
 	},
 	"item": [
 		{
@@ -109,6 +110,16 @@
 				{
 					"name": "Listar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -126,6 +137,16 @@
 				{
 					"name": "Listar Categorias",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -135,6 +156,34 @@
 							],
 							"path": [
 								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ping",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/card/ping",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"card",
+								"ping"
 							]
 						}
 					},
@@ -245,7 +294,8 @@
 									"    console.log(\"Token não encontrado na resposta ou a resposta não é JSON válida.\");",
 									"}"
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],

@@ -29,6 +29,10 @@ spring:
               uri: ${CARD_API_URL:http://localhost:8182}
               predicates:
                 - Path=/card/**
+            - id: category-api
+              uri: ${CARD_API_URL:http://localhost:8182}
+              predicates:
+                - Path=/category/**
             - id: user-api
               uri: ${USER_API_URL:http://localhost:8183}
               predicates:

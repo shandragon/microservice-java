@@ -54,9 +54,13 @@ public class UserController {
 
     @GetMapping("/ping")
     public String ping() {
-        log.debug("Ping request received");
+        log.info("Ping request received");
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
+        String username = authentication.getName();
+        String details = authentication.getDetails().toString();
+        log.info("Authenticated user: " + username);
+        log.info("User details: " + details);
         return "Scopes: " + authentication.getAuthorities();
     }
 }

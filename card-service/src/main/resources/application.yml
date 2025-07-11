@@ -1,6 +1,6 @@
 spring:
   application:
-    name: tcgc-user-api
+    name: tcgc-card-api
   datasource:
     url: ${POSTGRES_URL:jdbc:postgresql://172.17.0.3:5432/tcg_catalog}
     username: ${POSTGRES_USER:postgres}
@@ -22,7 +22,7 @@ spring:
 
 ## Application port
 server:
-  port: 8181
+  port: 8182
 
 ## Logging
 logging:
@@ -30,3 +30,7 @@ logging:
     org.springframework: INFO
     org.springframework.security: DEBUG
     org.springframework.security.oauth2: DEBUG
+
+tcgc:
+  url:
+    user: ${USER_API_URL:http://localhost:8181/tcgc-user-api}
