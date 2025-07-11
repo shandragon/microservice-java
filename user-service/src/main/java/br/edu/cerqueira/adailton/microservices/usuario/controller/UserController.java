@@ -2,51 +2,61 @@ package br.edu.cerqueira.adailton.microservices.usuario.controller;
 
 import br.edu.cerqueira.adailton.microservices.usuario.dto.UserDTO;
 import br.edu.cerqueira.adailton.microservices.usuario.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService service;
 
-    @GetMapping("/user")
+    @GetMapping("/")
     public List<UserDTO> getAll() {
         return service.getAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     UserDTO show(@PathVariable Long id) {
         return service.findById(id);
     }
 
-    @PostMapping("/user")
+    @PostMapping("/")
     UserDTO create(@RequestBody UserDTO userDTO) {
         return service.save(userDTO);
     }
 
-    @GetMapping("/user/cpf/{cpf}")
+    @GetMapping("/cpf/{cpf}")
     UserDTO showByCpf(@PathVariable String cpf) {
         return service.findByCpf(cpf);
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/{id}")
     UserDTO delete(@PathVariable Long id) {
         return service.delete(id);
     }
 
-    @GetMapping("/user/search")
+    @GetMapping("/search")
     public List<UserDTO> search(
             @RequestParam(name="nome", required = true)
             String nome) {
         return service.queryByName(nome);
+    }
+
+    @GetMapping("/ping")
+    public String ping() {
+        log.debug("Ping request received");
+        SecurityContext context = SecurityContextHolder.getContext();
+        Authentication authentication = context.getAuthentication();
+        return "Scopes: " + authentication.getAuthorities();
     }
 }

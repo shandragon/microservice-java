@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "165d3aca-f000-443c-874c-79a052c29781",
+		"_postman_id": "4ec41441-b648-466f-9875-25d53c9a5006",
 		"name": "TCG Catalog",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24726932"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -12,15 +11,26 @@
 				{
 					"name": "Listar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/user",
+							"raw": "{{url}}/user/",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"user"
+								"user",
+								""
 							]
 						}
 					},
@@ -29,11 +39,21 @@
 				{
 					"name": "Salvar",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"cpf\":\"123\",\n    \"name\":\"Lucas\",\n    \"email\":\"lucas@email.com\"\n}",
+							"raw": "{\n    \"cpf\":\"123\",\n    \"name\":\"Lucas\",\n    \"email\":\"lucas@email.com\",\n    \"passwd\":\"123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -41,12 +61,41 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/user",
+							"raw": "{{url}}/user/",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
-								"user"
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ping",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/ping",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"ping"
 							]
 						}
 					},
@@ -97,7 +146,7 @@
 			"name": "Keycloak",
 			"item": [
 				{
-					"name": "User info",
+					"name": "Users",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -107,7 +156,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJQXzc1eHh2V3g2NWJ1b05jc1dCUUV5dnYwY3NERFhzN1RWTXkyODNNZVRVIn0.eyJleHAiOjE3NTE2NjM3MTYsImlhdCI6MTc1MTY2MzQxNiwianRpIjoiNWM3NzZlNjQtODY5Zi00MDYyLWI2NGMtOTE2ZWYxZGIxN2RiIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo3MDgwL3JlYWxtcy90Y2ctcmVhbG0iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiMTgwNDlmN2MtN2E3OC00ZTVjLTljZDgtMmZiNTFmYTgxYmY2IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoidGNnLWdhdGV3YXkiLCJzZXNzaW9uX3N0YXRlIjoiNTI3NDVlYTQtYzU0OS00NTMxLWIxMDctYWU2Y2RjZjQ2ZjJjIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImFkbWluIiwiZGVmYXVsdC1yb2xlcy10Y2ctcmVhbG0iLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiI1Mjc0NWVhNC1jNTQ5LTQ1MzEtYjEwNy1hZTZjZGNmNDZmMmMiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWRtaW51c2VyIn0.L3BAI3mH2UJJY627udwfIC_8pnON0VxqA5wiIyZCFq-SjEvcsgGZIq1phN5GK07p7JgACPQVCCHqs45jbUTsnTld9_XI9DFWGOeXCarT5tYY93j0pn9M-INk6W-89cZHck151BCWrATCF_OeVRfY2ypx6ew_c4dUAC4xUKSwAADRoC7GOBCl4vEu9L9hHK4-gNVXDHfOecBHzbgPUswU5Vn0UG92hKnmvDFIhjL1nLzZN9uyzw04qP8O1vtQBggK87cDoQkL-KEZhyPJ2jXh79zazxXoZyo8beR74jbSmx-73PUbqSvAhqTA6YYU82rf8OXSz6iuIY-ntkwFsBuf0w",
+									"value": "{{access_token}}",
 									"type": "string"
 								}
 							]
@@ -119,18 +168,58 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "http://localhost:7080/realms/tcg-realm/protocol/openid-connect/userinfo",
+							"raw": "http://localhost:7080/admin/realms/realm-security/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "7080",
 							"path": [
+								"admin",
+								"realms",
+								"realm-security",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\":\"Adailton\",\n    \"lastName\":\"Cerqueira Junior\",\n    \"email\":\"adailton.cerqueira@gmail.com\",\n    \"enabled\":\"true\", \n    \"email_verified\": \"true\",\n    \"username\":\"adailton.cerqueira\", \n    \"credentials\":[{\n        \"type\":\"password\",\n        \"value\":\"1234\",\n        \"temporary\":false\n    }]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7080/admin/realms/tcg-realm/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7080",
+							"path": [
+								"admin",
 								"realms",
 								"tcg-realm",
-								"protocol",
-								"openid-connect",
-								"userinfo"
+								"users"
 							]
 						}
 					},
@@ -138,6 +227,28 @@
 				},
 				{
 					"name": "Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Analisa a resposta JSON",
+									"const responseJson = pm.response.json();",
+									"",
+									"// Verifica se a resposta JSON e o token existem",
+									"console.log(responseJson);",
+									"if (responseJson && responseJson.access_token) {",
+									"    // Salva o valor do token em uma variável da collection",
+									"    pm.collectionVariables.set(\"access_token\", responseJson.access_token);",
+									"    console.log(\"Token salvo na variável da collection 'access_token':\", responseJson.access_token);",
+									"} else {",
+									"    console.log(\"Token não encontrado na resposta ou a resposta não é JSON válida.\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -146,28 +257,78 @@
 							"urlencoded": [
 								{
 									"key": "client_id",
-									"value": "tcg-gateway",
+									"value": "realm-security",
 									"type": "text"
 								},
 								{
 									"key": "username",
-									"value": "adminuser",
-									"type": "text"
+									"value": "admin-tcg-realm",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "password",
 									"value": "admin123",
-									"type": "text"
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "default"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "grant_type",
 									"value": "password",
-									"type": "text"
+									"type": "default"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "default",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:7080/realms/tcg-realm/protocol/openid-connect/token",
+							"raw": "http://172.25.0.3:7080/realms/realm-security/protocol/openid-connect/token",
+							"protocol": "http",
+							"host": [
+								"172",
+								"25",
+								"0",
+								"3"
+							],
+							"port": "7080",
+							"path": [
+								"realms",
+								"realm-security",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Well Known",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7080/realms/tcg-realm/.well-known/openid-configuration",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -176,9 +337,8 @@
 							"path": [
 								"realms",
 								"tcg-realm",
-								"protocol",
-								"openid-connect",
-								"token"
+								".well-known",
+								"openid-configuration"
 							]
 						}
 					},
@@ -212,6 +372,10 @@
 			"key": "url",
 			"value": "http://localhost:8180",
 			"type": "default"
+		},
+		{
+			"key": "access_token",
+			"value": ""
 		}
 	]
 }

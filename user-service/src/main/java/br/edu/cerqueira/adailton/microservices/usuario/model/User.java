@@ -9,8 +9,7 @@ import java.util.Date;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private String id;
 
     private String name;
     private String cpf;
@@ -18,11 +17,11 @@ public class User {
     private String passwd;
     private Date createdAt;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
