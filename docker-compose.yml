@@ -22,6 +22,10 @@ services:
     environment:
       - USER_API_URL
       - CARD_API_URL
+      - KC_ISSUER_URI
+      - KC_JWK_SET_URI
+      - KC_CLIENT_ID
+      - KC_CLIENT_SECRET
     volumes:
       - ./gateway:/app
     depends_on:
@@ -41,6 +45,7 @@ services:
       - POSTGRES_URL
       - POSTGRES_USER
       - POSTGRES_PASSWORD
+      - KC_JWK_SET_URI
     volumes:
       - ./user-service:/app
       - ./core:/core
@@ -62,6 +67,7 @@ services:
       - POSTGRES_URL
       - POSTGRES_USER
       - POSTGRES_PASSWORD
+      - KC_JWK_SET_URI
     volumes:
       - ./card-service:/app
       - ./core:/core

@@ -5,9 +5,12 @@
   "verifyEmail": false,
   "users": [
     {
-      "username": "admin-tcg-realm",
+      "username": "admin",
       "enabled": true,
       "emailVerified": true,
+      "createdTimestamp": 1752371386815,
+      "firstName": "Administrador",
+      "lastName": "",
       "credentials": [
         {
           "type": "password",
@@ -17,9 +20,12 @@
       "realmRoles": ["admin"]
     },
     {
-      "username": "normaluser",
+      "username": "normal.user",
       "enabled": true,
       "emailVerified": true,
+      "createdTimestamp": 1752371386815,
+      "firstName": "Usuário",
+      "lastName": "Teste",
       "credentials": [
         {
           "type": "password",
@@ -27,6 +33,22 @@
         }
       ],
       "realmRoles": ["user"]
+    },
+    {
+      "createdTimestamp": 1752371386815,
+      "username": "service-account-tcgc-client",
+      "enabled": true,
+      "totp": false,
+      "emailVerified": true,
+      "firstName": "Administrador",
+      "lastName": "Usuários",
+      "serviceAccountClientId": "tcgc-client",
+      "clientRoles": {
+        "realm-management": [
+          "view-users",
+          "manage-users"
+        ]
+      }
     }
   ],
   "roles": {
@@ -37,7 +59,7 @@
         "composite": true,
         "composites": {
           "client": {
-            "realm-management": [
+            "tcgc-client": [
               "admin"
             ]
           }
@@ -49,7 +71,7 @@
         "composite": true,
         "composites": {
           "client": {
-            "realm-management": [
+            "tcgc-client": [
               "user"
             ]
           }
@@ -57,29 +79,17 @@
       }
     ],
     "client": {
-      "realm-security": [
+      "tcgc-client": [
         {
-          "id": "cf638bfa-5374-4f3f-bc03-ff129e969ff9",
-          "name": "role_admin",
-          "composite": false,
-          "clientRole": true,
-          "containerId": "f9876367-e727-4e0a-b920-c62939fa889c",
-          "attributes": {}
-        },
-        {
-          "id": "928d492a-c305-4d63-b78e-8ff6b3a37019",
           "name": "admin",
           "composite": false,
           "clientRole": true,
-          "containerId": "f9876367-e727-4e0a-b920-c62939fa889c",
           "attributes": {}
         },
         {
-          "id": "64ba23e6-5464-4d68-805d-e112a601b763",
-          "name": "role_user",
+          "name": "user",
           "composite": false,
           "clientRole": true,
-          "containerId": "f9876367-e727-4e0a-b920-c62939fa889c",
           "attributes": {}
         }
       ]
@@ -87,8 +97,13 @@
   },
   "clients": [
     {
-      "clientId": "tcg-gateway",
-      "publicClient": true,
+      "clientId": "tcgc-client",
+      "name": "TCG Catalog Client",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "Lmrj0waUmyv9TJCVMS2nFNqExW1axRBE",
+      "protocol": "openid-connect",
+      "serviceAccountsEnabled": true,
       "enabled": true,
       "redirectUris": ["*"],
       "directAccessGrantsEnabled": true

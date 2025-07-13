@@ -5,17 +5,17 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://172.25.0.3:7080/realms/realm-security
-          jwk-set-uri: http://172.25.0.3:7080/realms/realm-security/protocol/openid-connect/certs
+          issuer-uri: ${KC_ISSUER_URI:http://localhost:8180/realms/tcg-realm}
+          jwk-set-uri: ${KC_JWK_SET_URI:http://localhost:8180/realms/tcg-realm/protocol/openid-connect/certs}
       client:
         registration:
           keycloak:
-            client-id: realm-security
-            client-secret: Jk51JMNjXYRkAO9rZCEY18zhFyaSX0kc
+            client-id: ${KC_CLIENT_ID:tcgc-client}
+            client-secret: ${KC_CLIENT_SECRET:secret}
             scope: openid,profile,email
         provider:
           keycloak:
-            issuer-uri: http://172.25.0.3:7080/realms/realm-security
+            issuer-uri: ${KC_ISSUER_URI:http://localhost:8180/realms/tcg-realm}
   main:
     allow-bean-definition-overriding: true
   cloud:
@@ -56,7 +56,7 @@ server:
 jwt:
   auth:
     converter:
-      resource-id: realm-security
+      resource-id: tcgc-client
       principle-attribute: preferred_username
 
 ## Logging

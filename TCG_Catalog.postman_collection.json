@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "c8e5f6c7-1553-4696-8213-f3b1d9ad7325",
+		"_postman_id": "dee8e06f-1c3e-4a20-896d-4cba6bb84dfe",
 		"name": "TCG Catalog",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24726932"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -205,7 +204,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "{{access_token_client}}",
 									"type": "string"
 								}
 							]
@@ -217,16 +216,14 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "http://localhost:7080/admin/realms/realm-security/users",
-							"protocol": "http",
+							"raw": "{{url_keycloak}}/admin/realms/tcg-realm/users",
 							"host": [
-								"localhost"
+								"{{url_keycloak}}"
 							],
-							"port": "7080",
 							"path": [
 								"admin",
 								"realms",
-								"realm-security",
+								"tcg-realm",
 								"users"
 							]
 						}
@@ -241,7 +238,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "{{access_token}}",
+									"value": "{{access_token_client}}",
 									"type": "string"
 								}
 							]
@@ -250,7 +247,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\":\"Adailton\",\n    \"lastName\":\"Cerqueira Junior\",\n    \"email\":\"adailton.cerqueira@gmail.com\",\n    \"enabled\":\"true\", \n    \"email_verified\": \"true\",\n    \"username\":\"adailton.cerqueira\", \n    \"credentials\":[{\n        \"type\":\"password\",\n        \"value\":\"1234\",\n        \"temporary\":false\n    }]\n}",
+							"raw": "{\n    \"firstName\":\"Adailton\",\n    \"lastName\":\"Cerqueira Junior\",\n    \"email\":\"adailton.cerqueira@gmail.com\",\n    \"enabled\":\"true\", \n    \"emailVerified\": \"true\",\n    \"username\":\"adailton.cerqueira\", \n    \"credentials\":[{\n        \"type\":\"password\",\n        \"value\":\"1234\",\n        \"temporary\":false\n    }]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -258,16 +255,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:7080/admin/realms/tcg-realm/users",
-							"protocol": "http",
+							"raw": "{{url_keycloak}}/admin/realms/realm-security/users",
 							"host": [
-								"localhost"
+								"{{url_keycloak}}"
 							],
-							"port": "7080",
 							"path": [
 								"admin",
 								"realms",
-								"tcg-realm",
+								"realm-security",
 								"users"
 							]
 						}
@@ -294,8 +289,7 @@
 									"    console.log(\"Token não encontrado na resposta ou a resposta não é JSON válida.\");",
 									"}"
 								],
-								"type": "text/javascript",
-								"packages": {}
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -307,20 +301,13 @@
 							"urlencoded": [
 								{
 									"key": "client_id",
-									"value": "realm-security",
+									"value": "tcgc-client",
 									"type": "text"
 								},
 								{
-									"key": "username",
-									"value": "admin-tcg-realm",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "password",
-									"value": "admin123",
-									"type": "text",
-									"disabled": true
+									"key": "client_secret",
+									"value": "Lmrj0waUmyv9TJCVMS2nFNqExW1axRBE",
+									"type": "default"
 								},
 								{
 									"key": "username",
@@ -334,36 +321,82 @@
 								},
 								{
 									"key": "grant_type",
-									"value": "client_credentials",
-									"type": "text",
-									"disabled": true
-								},
-								{
-									"key": "grant_type",
 									"value": "password",
 									"type": "default"
-								},
-								{
-									"key": "grant_type",
-									"value": "authorization_code",
-									"type": "default",
-									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://172.25.0.3:7080/realms/realm-security/protocol/openid-connect/token",
-							"protocol": "http",
+							"raw": "{{url_keycloak}}/realms/tcg-realm/protocol/openid-connect/token",
 							"host": [
-								"172",
-								"25",
-								"0",
-								"3"
+								"{{url_keycloak}}"
 							],
-							"port": "7080",
 							"path": [
 								"realms",
-								"realm-security",
+								"tcg-realm",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Token Client",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Analisa a resposta JSON",
+									"const responseJson = pm.response.json();",
+									"",
+									"// Verifica se a resposta JSON e o token existem",
+									"console.log(responseJson);",
+									"if (responseJson && responseJson.access_token) {",
+									"    // Salva o valor do token em uma variável da collection",
+									"    pm.collectionVariables.set(\"access_token_client\", responseJson.access_token);",
+									"    console.log(\"Token salvo na variável da collection 'access_token':\", responseJson.access_token);",
+									"} else {",
+									"    console.log(\"Token não encontrado na resposta ou a resposta não é JSON válida.\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "tcgc-client",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "Lmrj0waUmyv9TJCVMS2nFNqExW1axRBE",
+									"type": "default"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url_keycloak}}/realms/tcg-realm/protocol/openid-connect/token",
+							"host": [
+								"{{url_keycloak}}"
+							],
+							"path": [
+								"realms",
+								"tcg-realm",
 								"protocol",
 								"openid-connect",
 								"token"
@@ -378,17 +411,87 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:7080/realms/tcg-realm/.well-known/openid-configuration",
-							"protocol": "http",
+							"raw": "{{url_keycloak}}/realms/tcg-realm/.well-known/openid-configuration",
 							"host": [
-								"localhost"
+								"{{url_keycloak}}"
 							],
-							"port": "7080",
 							"path": [
 								"realms",
 								"tcg-realm",
 								".well-known",
 								"openid-configuration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_client}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"id\": \"b534a3a7-5129-4b43-97c7-dd590d1cde00\",\n        \"name\": \"user\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_keycloak}}/admin/realms/realm-security/users/b36cb027-ad38-4191-8fc4-41ff4b9203fa/role-mappings/realm",
+							"host": [
+								"{{url_keycloak}}"
+							],
+							"path": [
+								"admin",
+								"realms",
+								"realm-security",
+								"users",
+								"b36cb027-ad38-4191-8fc4-41ff4b9203fa",
+								"role-mappings",
+								"realm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_client}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_keycloak}}/admin/realms/realm-security/roles",
+							"host": [
+								"{{url_keycloak}}"
+							],
+							"path": [
+								"admin",
+								"realms",
+								"realm-security",
+								"roles"
 							]
 						}
 					},
@@ -426,6 +529,16 @@
 		{
 			"key": "access_token",
 			"value": ""
+		},
+		{
+			"key": "url_keycloak",
+			"value": "http://172.25.0.3:7080",
+			"type": "default"
+		},
+		{
+			"key": "access_token_client",
+			"value": "",
+			"type": "default"
 		}
 	]
 }
