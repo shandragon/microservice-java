@@ -18,7 +18,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://172.25.0.3:7080/realms/realm-security/protocol/openid-connect/certs
+          jwk-set-uri: ${KC_JWK_SET_URI:http://localhost:8180/realms/tcg-realm/protocol/openid-connect/certs}
 
 ## Application port
 server:
