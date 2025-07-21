@@ -1,4 +1,4 @@
-package br.edu.cerqueira.adailton.microservices.usuario;
+package br.edu.cerqueira.adailton.microservices.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

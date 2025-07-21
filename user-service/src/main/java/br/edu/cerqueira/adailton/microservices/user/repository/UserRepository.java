@@ -1,6 +1,6 @@
-package br.edu.cerqueira.adailton.microservices.usuario.repository;
+package br.edu.cerqueira.adailton.microservices.user.repository;
 
-import br.edu.cerqueira.adailton.microservices.usuario.model.User;
+import br.edu.cerqueira.adailton.microservices.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

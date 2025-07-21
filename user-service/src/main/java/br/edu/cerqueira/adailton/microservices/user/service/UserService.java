@@ -1,8 +1,9 @@
-package br.edu.cerqueira.adailton.microservices.usuario.service;
+package br.edu.cerqueira.adailton.microservices.user.service;
 
-import br.edu.cerqueira.adailton.microservices.usuario.dto.UserDTO;
-import br.edu.cerqueira.adailton.microservices.usuario.model.User;
-import br.edu.cerqueira.adailton.microservices.usuario.repository.UserRepository;
+import br.edu.cerqueira.adailton.microservices.dto.UserDTO;
+import br.edu.cerqueira.adailton.microservices.user.convert.DTOConvert;
+import br.edu.cerqueira.adailton.microservices.user.model.User;
+import br.edu.cerqueira.adailton.microservices.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +19,13 @@ public class UserService {
 
     public List<UserDTO> getAll() {
         List<User> users = repository.findAll();
-        return users.stream().map(UserDTO::convert).collect(Collectors.toList());
+        return users.stream().map(DTOConvert::convert).collect(Collectors.toList());
     }
 
     public UserDTO findById(long userId) {
         Optional<User> user = repository.findById(userId);
         if (user.isPresent()) {
-            return UserDTO.convert(user.get());
+            return DTOConvert.convert(user.get());
         }
         return null;
     }
@@ -32,7 +33,7 @@ public class UserService {
     public UserDTO save(UserDTO userDTO) {
         userDTO.setCreatedAt(new Date());
         User user = repository.save(User.convert(userDTO));
-        return UserDTO.convert(user);
+        return DTOConvert.convert(user);
     }
 
     public UserDTO delete(long userId) {
@@ -46,13 +47,13 @@ public class UserService {
     public UserDTO findByCpf(String cpf) {
         User user = repository.findByCpf(cpf);
         if (user != null) {
-            return UserDTO.convert(user);
+            return DTOConvert.convert(user);
         }
         return null;
     }
 
     public List<UserDTO> queryByName(String name) {
         List<User> users = repository.queryByNameLike(name);
-        return users.stream().map(UserDTO::convert).collect(Collectors.toList());
+        return users.stream().map(DTOConvert::convert).collect(Collectors.toList());
     }
 }

@@ -1,4 +1,4 @@
-package br.edu.cerqueira.adailton.microservices.usuario.config;
+package br.edu.cerqueira.adailton.microservices.user.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

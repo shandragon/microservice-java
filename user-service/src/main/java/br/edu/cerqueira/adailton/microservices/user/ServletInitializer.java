@@ -1,4 +1,4 @@
-package br.edu.cerqueira.adailton.microservices.usuario;
+package br.edu.cerqueira.adailton.microservices.user;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

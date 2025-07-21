@@ -1,7 +1,7 @@
-package br.edu.cerqueira.adailton.microservices.usuario.controller;
+package br.edu.cerqueira.adailton.microservices.user.controller;
 
-import br.edu.cerqueira.adailton.microservices.usuario.dto.UserDTO;
-import br.edu.cerqueira.adailton.microservices.usuario.service.UserService;
+import br.edu.cerqueira.adailton.microservices.dto.UserDTO;
+import br.edu.cerqueira.adailton.microservices.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

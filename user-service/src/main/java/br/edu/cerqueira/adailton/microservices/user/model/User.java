@@ -1,15 +1,17 @@
-package br.edu.cerqueira.adailton.microservices.usuario.model;
+package br.edu.cerqueira.adailton.microservices.user.model;
 
-import br.edu.cerqueira.adailton.microservices.usuario.dto.UserDTO;
+import br.edu.cerqueira.adailton.microservices.dto.UserDTO;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 public class User {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     private String name;
     private String cpf;
@@ -17,11 +19,11 @@ public class User {
     private String passwd;
     private Date createdAt;
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
