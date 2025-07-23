@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "dee8e06f-1c3e-4a20-896d-4cba6bb84dfe",
+		"_postman_id": "da0bc9a5-2227-4fa5-bee4-88e1fd4897c5",
 		"name": "TCG Catalog",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -37,44 +37,7 @@
 					"response": []
 				},
 				{
-					"name": "Salvar",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"cpf\":\"123\",\n    \"name\":\"Lucas\",\n    \"email\":\"lucas@email.com\",\n    \"passwd\":\"123456\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{url}}/user/",
-							"host": [
-								"{{url}}"
-							],
-							"path": [
-								"user",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Ping",
+					"name": "Show",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -89,13 +52,47 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/user/ping",
+							"raw": "{{url}}/user/:id",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"user",
-								"ping"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "c990fe98-67d9-4939-adca-392b15711081"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/user/profile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"profile"
 							]
 						}
 					},
@@ -186,6 +183,50 @@
 		{
 			"name": "Keycloak",
 			"item": [
+				{
+					"name": "User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token_client}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url_keycloak}}/admin/realms/tcg-realm/users/:id",
+							"host": [
+								"{{url_keycloak}}"
+							],
+							"path": [
+								"admin",
+								"realms",
+								"tcg-realm",
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "c94ffdc9-4750-45e1-ae1d-609446a72170"
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Users",
 					"protocolProfileBehavior": {
@@ -304,12 +345,12 @@
 								},
 								{
 									"key": "username",
-									"value": "admin",
+									"value": "normal.user",
 									"type": "default"
 								},
 								{
 									"key": "password",
-									"value": "admin123",
+									"value": "normal123",
 									"type": "default"
 								},
 								{

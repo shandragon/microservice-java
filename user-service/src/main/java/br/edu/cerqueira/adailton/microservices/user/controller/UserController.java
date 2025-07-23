@@ -5,9 +5,6 @@ import br.edu.cerqueira.adailton.microservices.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,23 +23,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    UserDTO show(@PathVariable Long id) {
+    UserDTO show(@PathVariable String id) {
         return service.findById(id);
-    }
-
-    @PostMapping("/")
-    UserDTO create(@RequestBody UserDTO userDTO) {
-        return service.save(userDTO);
     }
 
     @GetMapping("/cpf/{cpf}")
     UserDTO showByCpf(@PathVariable String cpf) {
         return service.findByCpf(cpf);
-    }
-
-    @DeleteMapping("/{id}")
-    UserDTO delete(@PathVariable Long id) {
-        return service.delete(id);
     }
 
     @GetMapping("/search")
@@ -52,12 +39,8 @@ public class UserController {
         return service.queryByName(nome);
     }
 
-    @GetMapping("/ping")
-    public String ping() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
-        String username = authentication.getName();
-        log.info("Authenticated user: " + username);
-        return "Scopes: " + authentication.getAuthorities();
+    @GetMapping("/profile")
+    public UserDTO profile() {
+        return service.getProfile();
     }
 }

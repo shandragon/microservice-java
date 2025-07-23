@@ -27,8 +27,6 @@ databaseChangeLog:
               - column:
                   name: cpf
                   type: varchar(11)
-                  constraints:
-                    nullable: false
               - column:
                   name: email
                   type: varchar(250)

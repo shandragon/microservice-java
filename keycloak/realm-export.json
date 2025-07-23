@@ -11,6 +11,7 @@
       "createdTimestamp": 1752371386815,
       "firstName": "Administrador",
       "lastName": "",
+      "email": "admin@teste.com",
       "credentials": [
         {
           "type": "password",
@@ -26,6 +27,7 @@
       "createdTimestamp": 1752371386815,
       "firstName": "Usuário",
       "lastName": "Teste",
+      "email": "normal.user@teste.com",
       "credentials": [
         {
           "type": "password",

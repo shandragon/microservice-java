@@ -10,14 +10,13 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     private String name;
     private String cpf;
     private String email;
-    private String passwd;
     private Date createdAt;
+    private Date updatedAt;
 
     public UUID getId() {
         return id;
@@ -59,21 +58,22 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public static User convert(UserDTO userDTO) {
         User user = new User();
+        user.setId(userDTO.getId());
         user.setName(userDTO.getName());
         user.setCpf(userDTO.getCpf());
         user.setEmail(userDTO.getEmail());
         user.setCreatedAt(userDTO.getCreatedAt());
-        user.setPasswd(userDTO.getPasswd());
+        user.setUpdatedAt(userDTO.getUpdatedAt());
         return user;
     }
 }

@@ -1,13 +1,23 @@
 package br.edu.cerqueira.adailton.microservices.dto;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class UserDTO {
+    private UUID id;
     private String name;
     private String cpf;
     private String email;
-    private String passwd;
     private Date createdAt;
+    private Date updatedAt;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -41,11 +51,11 @@ public class UserDTO {
         this.createdAt = createdAt;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
