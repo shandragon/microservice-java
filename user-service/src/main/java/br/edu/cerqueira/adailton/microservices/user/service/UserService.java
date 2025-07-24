@@ -1,5 +1,6 @@
 package br.edu.cerqueira.adailton.microservices.user.service;
 
+import br.edu.cerqueira.adailton.microservices.dto.ProfileDTO;
 import br.edu.cerqueira.adailton.microservices.dto.UserDTO;
 import br.edu.cerqueira.adailton.microservices.user.convert.DTOConvert;
 import br.edu.cerqueira.adailton.microservices.user.model.User;
@@ -69,5 +70,21 @@ public class UserService {
     public List<UserDTO> queryByName(String name) {
         List<User> users = repository.queryByNameLike(name);
         return users.stream().map(DTOConvert::convert).collect(Collectors.toList());
+    }
+
+    public UserDTO save(UserDTO userDTO) {
+        userDTO.setUpdatedAt(new Date());
+        User user = repository.save(User.convert(userDTO));
+        return DTOConvert.convert(user);
+    }
+
+    public UserDTO saveProfile(ProfileDTO profileDTO) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UUID userId = UUID.fromString(authentication.getName());
+
+        User user = repository.findById(userId).get();
+        user.setCpf(profileDTO.getCpf());
+
+        return DTOConvert.convert(repository.save(user));
     }
 }

@@ -1,5 +1,6 @@
 package br.edu.cerqueira.adailton.microservices.user.controller;
 
+import br.edu.cerqueira.adailton.microservices.dto.ProfileDTO;
 import br.edu.cerqueira.adailton.microservices.dto.UserDTO;
 import br.edu.cerqueira.adailton.microservices.user.service.UserService;
 import org.slf4j.Logger;
@@ -42,5 +43,10 @@ public class UserController {
     @GetMapping("/profile")
     public UserDTO profile() {
         return service.getProfile();
+    }
+
+    @PostMapping("/profile")
+    UserDTO create(@RequestBody ProfileDTO profileDTO) {
+        return service.saveProfile(profileDTO);
     }
 }
