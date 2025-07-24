@@ -55,10 +55,7 @@ public class UserService {
 
     public UserDTO findById(String userId) {
         Optional<User> user = repository.findById(UUID.fromString(userId));
-        if (user.isPresent()) {
-            return DTOConvert.convert(user.get());
-        }
-        return null;
+        return user.map(DTOConvert::convert).orElse(null);
     }
 
     public UserDTO findByCpf(String cpf) {
