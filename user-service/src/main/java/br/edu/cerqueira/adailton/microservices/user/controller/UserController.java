@@ -3,6 +3,7 @@ package br.edu.cerqueira.adailton.microservices.user.controller;
 import br.edu.cerqueira.adailton.microservices.dto.ProfileDTO;
 import br.edu.cerqueira.adailton.microservices.dto.UserDTO;
 import br.edu.cerqueira.adailton.microservices.user.service.UserService;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class UserController {
     }
 
     @PostMapping("/profile")
-    UserDTO create(@RequestBody ProfileDTO profileDTO) {
+    UserDTO create(@RequestBody @Valid ProfileDTO profileDTO) {
         return service.saveProfile(profileDTO);
     }
 }

@@ -1,9 +1,10 @@
 package br.edu.cerqueira.adailton.microservices.dto;
 
-import java.util.UUID;
+import org.hibernate.validator.constraints.br.CPF;
 
 public class ProfileDTO {
 
+    @CPF
     private String cpf;
 
     public String getCpf() {
