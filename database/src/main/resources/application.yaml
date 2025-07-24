@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: database
+
+## PostgreSQL
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/tcg_catalog}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+
+## JPA
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: catalogs
+    hibernate:
+      ddl-auto: none
+
+
+## Liquibase
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    default-schema: liquibase

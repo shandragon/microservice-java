@@ -3,6 +3,7 @@
   "enabled": true,
   "sslRequired": "external",
   "verifyEmail": false,
+  "registrationAllowed": true,
   "users": [
     {
       "username": "admin",
