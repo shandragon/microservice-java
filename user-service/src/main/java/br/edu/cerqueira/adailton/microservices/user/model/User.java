@@ -2,11 +2,15 @@ package br.edu.cerqueira.adailton.microservices.user.model;
 
 import br.edu.cerqueira.adailton.microservices.dto.UserDTO;
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 import java.util.UUID;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     @Id
@@ -15,7 +19,11 @@ public class User {
     private String name;
     private String cpf;
     private String email;
+
+    @CreatedDate
     private Date createdAt;
+
+    @LastModifiedDate
     private Date updatedAt;
 
     public UUID getId() {
